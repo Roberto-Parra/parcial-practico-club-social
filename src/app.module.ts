@@ -6,6 +6,7 @@ import { ClubModule } from './club/club.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SocioEntity } from './socio/socio.entity';
 import { ClubEntity } from './club/club.entity';
+import { SocioClubModule } from './socio-club/socio-club.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ClubEntity } from './club/club.entity';
       synchronize: true,
       keepConnectionAlive: true,
     }),
+    SocioClubModule,
   ],
   controllers: [AppController],
   providers: [AppService],
