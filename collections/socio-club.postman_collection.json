@@ -7,6 +7,132 @@
 	},
 	"item": [
 		{
+			"name": "Crear un Club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"club_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Club de Karate\",\n    \"foundationDate\": \"2020-01-01\",\n    \"image\": \"http://imagen.jpg\",\n    \"description\": \"Club deportivo.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/clubs",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Socio 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"socio1_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"daniel_rodriguez\",\n  \"email\": \"daniel.rodriguez@example.com\",\n  \"birthdate\": \"1983-12-17\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Socio 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"socio2_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"laura_jimenez\",\n  \"email\": \"laura.jimenez@example.com\",\n  \"birthdate\": \"1990-07-08\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Agregar un socio a un club",
 			"event": [
 				{
@@ -42,7 +168,7 @@
 						},
 						{
 							"key": "socio_id",
-							"value": "{{socio_id}}"
+							"value": "{{socio1_id}}"
 						}
 					]
 				}
@@ -71,7 +197,7 @@
 								},
 								{
 									"key": "socio_id",
-									"value": "{{socio_id}}"
+									"value": "{{socio1_id}}"
 								}
 							]
 						}
@@ -90,15 +216,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "435"
+							"value": "310"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"1b3-YelYzhj6gybdOIG337qRJ5QqNIA\""
+							"value": "W/\"136-db39waWDb5GXVGQFuGO/DF4E7Qk\""
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 19 Nov 2023 18:24:05 GMT"
+							"value": "Sun, 19 Nov 2023 19:27:08 GMT"
 						},
 						{
 							"key": "Connection",
@@ -110,7 +236,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"441a8f8b-5c1f-40d1-933e-abb85b345222\",\n    \"name\": \"Club de Fútbol\",\n    \"foundationDate\": \"2020-01-01\",\n    \"image\": \"http://imagen.jpg\",\n    \"description\": \"Club deportivo.\",\n    \"socios\": [\n        {\n            \"id\": \"150f2426-a7e1-4be8-8c30-af1be799cd85\",\n            \"username\": \"juanperez\",\n            \"email\": \"juanperez@example.com\",\n            \"birthdate\": \"1990-05-15\"\n        },\n        {\n            \"id\": \"b2502dfc-eec0-4da0-ad63-533366096e58\",\n            \"username\": \"alejandro_gomez\",\n            \"email\": \"alejandro.gomez@example.com\",\n            \"birthdate\": \"1985-08-15\"\n        }\n    ]\n}"
+					"body": "{\n    \"id\": \"9dcbf72a-3297-4fe1-87bf-a2ec59159874\",\n    \"name\": \"Club de Karate\",\n    \"foundationDate\": \"2020-01-01\",\n    \"image\": \"http://imagen.jpg\",\n    \"description\": \"Club deportivo.\",\n    \"socios\": [\n        {\n            \"id\": \"f53f9fb3-397a-4aae-8c9f-3dc59f15b5b6\",\n            \"username\": \"daniel_rodriguez\",\n            \"email\": \"daniel.rodriguez@example.com\",\n            \"birthdate\": \"1983-12-17\"\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -360,7 +486,7 @@
 						},
 						{
 							"key": "socio_id",
-							"value": "{{socio_id}}"
+							"value": "{{socio1_id}}"
 						}
 					]
 				}
@@ -389,7 +515,7 @@
 								},
 								{
 									"key": "socio_id",
-									"value": "{{socio_id}}"
+									"value": "{{socio1_id}}"
 								}
 							]
 						}
@@ -408,15 +534,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "137"
+							"value": "139"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"89-+ueNnOr8mlJO8hMBF2nNs6/WRdM\""
+							"value": "W/\"8b-2T5N/ij1VFgqA+B3GSYpurfbyys\""
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 19 Nov 2023 18:37:41 GMT"
+							"value": "Sun, 19 Nov 2023 19:28:40 GMT"
 						},
 						{
 							"key": "Connection",
@@ -428,7 +554,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"b2502dfc-eec0-4da0-ad63-533366096e58\",\n    \"username\": \"alejandro_gomez\",\n    \"email\": \"alejandro.gomez@example.com\",\n    \"birthdate\": \"1985-08-15\"\n}"
+					"body": "{\n    \"id\": \"f53f9fb3-397a-4aae-8c9f-3dc59f15b5b6\",\n    \"username\": \"daniel_rodriguez\",\n    \"email\": \"daniel.rodriguez@example.com\",\n    \"birthdate\": \"1983-12-17\"\n}"
 				}
 			]
 		},
@@ -596,7 +722,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    \"dacc9b36-803e-4187-a305-27002daf4b81\",\n    \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca9\"\n]",
+							"raw": "[\n    \"{{socio1_id}}\",\n    \"{{socio2_id}}\"\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -635,15 +761,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "439"
+							"value": "444"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"1b7-S+Z2LjmTjCDbjqdnm6Rj7bowq64\""
+							"value": "W/\"1bc-OdxEzWRqQl6Zzh8vL5YRzIU5hJU\""
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 19 Nov 2023 18:59:24 GMT"
+							"value": "Sun, 19 Nov 2023 19:30:59 GMT"
 						},
 						{
 							"key": "Connection",
@@ -655,7 +781,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"441a8f8b-5c1f-40d1-933e-abb85b345222\",\n    \"name\": \"Club de Fútbol\",\n    \"foundationDate\": \"2020-01-01\",\n    \"image\": \"http://imagen.jpg\",\n    \"description\": \"Club deportivo.\",\n    \"socios\": [\n        {\n            \"id\": \"dacc9b36-803e-4187-a305-27002daf4b81\",\n            \"username\": \"maria_lopez\",\n            \"email\": \"maria.lopez@example.com\",\n            \"birthdate\": \"1992-03-22\"\n        },\n        {\n            \"id\": \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca9\",\n            \"username\": \"carlos_martinez\",\n            \"email\": \"carlos.martinez@example.com\",\n            \"birthdate\": \"1979-11-30\"\n        }\n    ]\n}"
+					"body": "{\n    \"id\": \"9dcbf72a-3297-4fe1-87bf-a2ec59159874\",\n    \"name\": \"Club de Karate\",\n    \"foundationDate\": \"2020-01-01\",\n    \"image\": \"http://imagen.jpg\",\n    \"description\": \"Club deportivo.\",\n    \"socios\": [\n        {\n            \"id\": \"f53f9fb3-397a-4aae-8c9f-3dc59f15b5b6\",\n            \"username\": \"daniel_rodriguez\",\n            \"email\": \"daniel.rodriguez@example.com\",\n            \"birthdate\": \"1983-12-17\"\n        },\n        {\n            \"id\": \"a3196da7-bab6-49eb-8ceb-db79c3ed1c83\",\n            \"username\": \"laura_jimenez\",\n            \"email\": \"laura.jimenez@example.com\",\n            \"birthdate\": \"1990-07-08\"\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -774,6 +900,74 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The following members were not found: 30ce592b-0b82-43ef-aa0f-8a1ebb6abca1, 30ce592b-0b82-43ef-aa0f-8a1ebb6abca0\"\n}"
+				},
+				{
+					"name": "invalid socio id",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"{{socio1_id}}\",\n    \"{{socio2_id}}\",\n    \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca0\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/clubs/:club_id/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								":club_id",
+								"members"
+							],
+							"variable": [
+								{
+									"key": "club_id",
+									"value": "{{club_id}}"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "105"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"69-QopNwRUfHl5loc54tsyWcKuhWik\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Nov 2023 19:31:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The following members were not found: 30ce592b-0b82-43ef-aa0f-8a1ebb6abca0\"\n}"
 				}
 			]
 		},
@@ -813,7 +1007,7 @@
 						},
 						{
 							"key": "socio_id",
-							"value": "{{socio_id}}"
+							"value": "{{socio1_id}}"
 						}
 					]
 				}
