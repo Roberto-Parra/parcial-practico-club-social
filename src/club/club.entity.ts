@@ -10,7 +10,7 @@ import { SocioEntity } from '../socio/socio.entity';
 @Entity()
 export class ClubEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   name: string;

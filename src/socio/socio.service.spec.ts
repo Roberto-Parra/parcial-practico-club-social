@@ -116,4 +116,10 @@ describe('SocioService', () => {
     });
     expect(deletedSocio).toBeNull();
   });
+  it('delete should throw an exception for an invalid socio', async () => {
+    await expect(() => service.delete('0')).rejects.toHaveProperty(
+      'message',
+      'The socio with the given id was not found',
+    );
+  });
 });
