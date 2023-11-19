@@ -1,0 +1,869 @@
+{
+	"info": {
+		"_postman_id": "ee36e192-d695-4e30-843b-0c531b01af74",
+		"name": "socio-club",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4238325"
+	},
+	"item": [
+		{
+			"name": "Agregar un socio a un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						":club_id",
+						"members",
+						":socio_id"
+					],
+					"variable": [
+						{
+							"key": "club_id",
+							"value": "{{club_id}}"
+						},
+						{
+							"key": "socio_id",
+							"value": "{{socio_id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "caso éxitoso",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								":club_id",
+								"members",
+								":socio_id"
+							],
+							"variable": [
+								{
+									"key": "club_id",
+									"value": "{{club_id}}"
+								},
+								{
+									"key": "socio_id",
+									"value": "{{socio_id}}"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "435"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1b3-YelYzhj6gybdOIG337qRJ5QqNIA\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Nov 2023 18:24:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"441a8f8b-5c1f-40d1-933e-abb85b345222\",\n    \"name\": \"Club de Fútbol\",\n    \"foundationDate\": \"2020-01-01\",\n    \"image\": \"http://imagen.jpg\",\n    \"description\": \"Club deportivo.\",\n    \"socios\": [\n        {\n            \"id\": \"150f2426-a7e1-4be8-8c30-af1be799cd85\",\n            \"username\": \"juanperez\",\n            \"email\": \"juanperez@example.com\",\n            \"birthdate\": \"1990-05-15\"\n        },\n        {\n            \"id\": \"b2502dfc-eec0-4da0-ad63-533366096e58\",\n            \"username\": \"alejandro_gomez\",\n            \"email\": \"alejandro.gomez@example.com\",\n            \"birthdate\": \"1985-08-15\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Asociar un socio que no existe a un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response should be bad request for invalid socio\", function () {",
+							"    var responseJson = pm.response.json();",
+							"    pm.expect(pm.response.code).to.eql(404);",
+							"    pm.expect(responseJson.message).to.include(\"The socio with the given id was not found\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						":club_id",
+						"members",
+						":socio_id"
+					],
+					"variable": [
+						{
+							"key": "club_id",
+							"value": "{{club_id}}"
+						},
+						{
+							"key": "socio_id",
+							"value": "441a8f8b-5c1f-40d1-933e-abb85b345223"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "invalid id socio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								":club_id",
+								"members",
+								":socio_id"
+							],
+							"variable": [
+								{
+									"key": "club_id",
+									"value": "{{club_id}}"
+								},
+								{
+									"key": "socio_id",
+									"value": "441a8f8b-5c1f-40d1-933e-abb85b345223"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-bwnpeMUXrEhj/yH+5wnK/qRqWVQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Nov 2023 18:33:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The socio with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los socios de un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/:club_id/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						":club_id",
+						"members"
+					],
+					"variable": [
+						{
+							"key": "club_id",
+							"value": "{{club_id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "caso éxitoso",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/:club_id/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								":club_id",
+								"members"
+							],
+							"variable": [
+								{
+									"key": "club_id",
+									"value": "{{club_id}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "265"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"109-Sa/zPXyQ4vD4WXO2U7YCxX5aA4U\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Nov 2023 18:35:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"150f2426-a7e1-4be8-8c30-af1be799cd85\",\n        \"username\": \"juanperez\",\n        \"email\": \"juanperez@example.com\",\n        \"birthdate\": \"1990-05-15\"\n    },\n    {\n        \"id\": \"b2502dfc-eec0-4da0-ad63-533366096e58\",\n        \"username\": \"alejandro_gomez\",\n        \"email\": \"alejandro.gomez@example.com\",\n        \"birthdate\": \"1985-08-15\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un socio que pertenece a un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						":club_id",
+						"members",
+						":socio_id"
+					],
+					"variable": [
+						{
+							"key": "club_id",
+							"value": "{{club_id}}"
+						},
+						{
+							"key": "socio_id",
+							"value": "{{socio_id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "caso éxitoso",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								":club_id",
+								"members",
+								":socio_id"
+							],
+							"variable": [
+								{
+									"key": "club_id",
+									"value": "{{club_id}}"
+								},
+								{
+									"key": "socio_id",
+									"value": "{{socio_id}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "137"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"89-+ueNnOr8mlJO8hMBF2nNs6/WRdM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Nov 2023 18:37:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"b2502dfc-eec0-4da0-ad63-533366096e58\",\n    \"username\": \"alejandro_gomez\",\n    \"email\": \"alejandro.gomez@example.com\",\n    \"birthdate\": \"1985-08-15\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un socio que no es parte un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response should be bad request for invalid socio\", function () {",
+							"    var responseJson = pm.response.json();",
+							"    pm.expect(pm.response.code).to.eql(404);",
+							"    pm.expect(responseJson.message).to.include(\"The socio with the given id was not found\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						":club_id",
+						"members",
+						":socio_id"
+					],
+					"variable": [
+						{
+							"key": "club_id",
+							"value": "{{club_id}}"
+						},
+						{
+							"key": "socio_id",
+							"value": "b2502dfc-eec0-4da0-ad63-533366096e59"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "invalid socio id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								":club_id",
+								"members",
+								":socio_id"
+							],
+							"variable": [
+								{
+									"key": "club_id",
+									"value": "{{club_id}}"
+								},
+								{
+									"key": "socio_id",
+									"value": "b2502dfc-eec0-4da0-ad63-533366096e59"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-bwnpeMUXrEhj/yH+5wnK/qRqWVQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Nov 2023 18:40:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The socio with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar los socios que pertenecen a un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"dacc9b36-803e-4187-a305-27002daf4b81\",\n    \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca9\"\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/clubs/:club_id/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						":club_id",
+						"members"
+					],
+					"variable": [
+						{
+							"key": "club_id",
+							"value": "{{club_id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "caso éxitoso",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"dacc9b36-803e-4187-a305-27002daf4b81\",\n    \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca9\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/clubs/:club_id/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								":club_id",
+								"members"
+							],
+							"variable": [
+								{
+									"key": "club_id",
+									"value": "{{club_id}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "439"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1b7-S+Z2LjmTjCDbjqdnm6Rj7bowq64\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Nov 2023 18:59:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"441a8f8b-5c1f-40d1-933e-abb85b345222\",\n    \"name\": \"Club de Fútbol\",\n    \"foundationDate\": \"2020-01-01\",\n    \"image\": \"http://imagen.jpg\",\n    \"description\": \"Club deportivo.\",\n    \"socios\": [\n        {\n            \"id\": \"dacc9b36-803e-4187-a305-27002daf4b81\",\n            \"username\": \"maria_lopez\",\n            \"email\": \"maria.lopez@example.com\",\n            \"birthdate\": \"1992-03-22\"\n        },\n        {\n            \"id\": \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca9\",\n            \"username\": \"carlos_martinez\",\n            \"email\": \"carlos.martinez@example.com\",\n            \"birthdate\": \"1979-11-30\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar los socios de un club, con un socio inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response should be bad request for invalid socio\", function () {",
+							"    var responseJson = pm.response.json();",
+							"    pm.expect(pm.response.code).to.eql(404);",
+							"    pm.expect(responseJson.message).to.include(\"The socio with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"dacc9b36-803e-4187-a305-27002daf4b81\",\n    \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca9\",\n    \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca0\"\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/clubs/:club_id/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						":club_id",
+						"members"
+					],
+					"variable": [
+						{
+							"key": "club_id",
+							"value": "{{club_id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "socio id invalid",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"dacc9b36-803e-4187-a305-27002daf4b81\",\n    \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca1\",\n    \"30ce592b-0b82-43ef-aa0f-8a1ebb6abca0\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/clubs/:club_id/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								":club_id",
+								"members"
+							],
+							"variable": [
+								{
+									"key": "club_id",
+									"value": "{{club_id}}"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "143"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8f-5Op/imkF9Qhg/fEGyaA1Q9LrpLI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Nov 2023 19:03:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The following members were not found: 30ce592b-0b82-43ef-aa0f-8a1ebb6abca1, 30ce592b-0b82-43ef-aa0f-8a1ebb6abca0\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un socio que es parte de un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						":club_id",
+						"members",
+						":socio_id"
+					],
+					"variable": [
+						{
+							"key": "club_id",
+							"value": "{{club_id}}"
+						},
+						{
+							"key": "socio_id",
+							"value": "{{socio_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un socio que no es parte de un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response should be bad request for invalid socio\", function () {",
+							"    var responseJson = pm.response.json();",
+							"    pm.expect(pm.response.code).to.eql(404);",
+							"    pm.expect(responseJson.message).to.include(\"The member with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/:club_id/members/:socio_id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						":club_id",
+						"members",
+						":socio_id"
+					],
+					"variable": [
+						{
+							"key": "club_id",
+							"value": "{{club_id}}"
+						},
+						{
+							"key": "socio_id",
+							"value": "30ce592b-0b82-43ef-aa0f-8a1ebb6abca0"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
