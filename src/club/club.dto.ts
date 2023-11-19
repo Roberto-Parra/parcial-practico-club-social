@@ -1,6 +1,6 @@
 import {
   IsString,
-  IsDate,
+  IsDateString,
   IsOptional,
   IsUrl,
   Length,
@@ -12,7 +12,8 @@ export class ClubDto {
   @IsNotEmpty()
   readonly name: string;
 
-  @IsDate()
+  @IsDateString()
+  @IsNotEmpty()
   readonly foundationDate: Date;
 
   @IsOptional()

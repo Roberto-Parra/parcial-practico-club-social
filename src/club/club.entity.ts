@@ -15,7 +15,7 @@ export class ClubEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ type: 'date' })
   foundationDate: Date;
 
   @Column()
