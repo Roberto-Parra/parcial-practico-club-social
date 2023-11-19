@@ -12,7 +12,7 @@ export class SocioEntity {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ type: 'date' })
   birthdate: Date;
 
   @ManyToMany(() => ClubEntity, (club) => club.socios)

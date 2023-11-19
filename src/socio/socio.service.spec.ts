@@ -85,7 +85,7 @@ describe('SocioService', () => {
     };
     await expect(service.create(socioData)).rejects.toHaveProperty(
       'message',
-      'Invalid email',
+      'email must be an email',
     );
   });
   it('should update a socio', async () => {

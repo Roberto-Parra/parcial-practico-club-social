@@ -35,14 +35,14 @@ export class SocioService {
 
   async create(socio: SocioEntity): Promise<SocioEntity> {
     if (!socio.email.includes('@')) {
-      throw new Error('Invalid email');
+      throw new Error('email must be an email');
     }
     return await this.socioRepository.save(socio);
   }
 
   async update(id: string, socio: SocioEntity): Promise<SocioEntity> {
     if (socio.email && !socio.email.includes('@')) {
-      throw new Error('Invalid email');
+      throw new Error('email must be an email');
     }
     const persistedSocio: SocioEntity = await this.socioRepository.findOne({
       where: { id },
